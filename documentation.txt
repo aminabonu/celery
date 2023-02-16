@@ -1,0 +1,61 @@
+// Пользователи
+
+method: [POST] ++
+endpoint: /register/<name>/<phone_number>/<JWT>
+response: {'status': 1, 'message': 'Success', 'user_id': integer}
+description: Регистрация пользователя
+
+method: [POST] ++
+endpoint: /add-card/<card-number>/<exp_date>/<card_name>/<phone_number>/<JWT>
+response: {'status': 1, 'message': 'Success'}
+description: Добавить карту в приложение
+
+
+method: [POST] ++
+endpoint: /transfer-money/<user_from_id>/user_from_card/<to_card>/<amount>/<JWT>
+response: {'status': 1, 'message': 'Success', 'token': string}
+description: Перевод денег с одного счета на другой
+
+
+method: [POST] ++
+endpoint: /pay-service/<service_id>/<amount>/<from_card><JWT>
+response: {'status': 1, 'message': 'Success', 'token': string}
+description: Оплачивать услуги
+
+
+method: [GET] ++
+endpoint: /expenses/<card_number or all>/<JWT>
+response_1: {'status': 1, 'result': [
+                                    {'amount': integer,
+                                    'service_type': string,
+                                    'service_name': string,
+                                    'date': DateTime}
+                                    }]
+
+description: Мониторинг затрат
+
+
+method: [DELETE] ++
+endpoint: /delete-card/<card_number>/<user_id>/<JWT>
+response: {'status': 1, 'message': 'Success'}
+description: Удалить карту из приложения
+
+
+// Бизнесс
+
+method: [POST] ++
+endpoint: /add-service/<user_id>/<service_name>/<service_type>/<which_card>/<JWT>
+response: {'status': 1, 'message': 'Success'}
+description: Регистрация услуги
+
+
+method: [POST] ++
+endpoint: /send-invoice/<service_id>/<service_name>/<amount>/<phone_number or any>/<JWT>
+response: {'status': 1, 'message': 'Success', 'link': string}
+description: Выставление счета клиентам
+
+
+method: [GET] ++
+endpoint: /income/<user_id>/<JWT>
+response: {'status': 1, 'message': 'Success', 'income': ['from_user': integer, 'amount': float]}
+description: Личный кабинент бизнеса для отслеживания доходов
